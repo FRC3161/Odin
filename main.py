@@ -10,7 +10,8 @@ while True:
 
     decodedBarcode = pyzbar.decode(frame)
     if decodedBarcode:
-        print(decodedBarcode[0].data)
+        scoutingData = decodedBarcode[0].data.decode('utf-8').split(", ")
+        print(scoutingData)
         break
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
