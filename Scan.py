@@ -22,7 +22,10 @@ class Scan:
         self.qr_reader.release_camera()
         self.scans += 1
         if self.scans == 10:
-            shutil.copy(self.csvfile, f"{self.csvfile}_{int(time.time())}.csv")
+            try:
+                shutil.copy(self.csvfile, f"{self.csvfile}_{int(time.time())}.csv")
+            except:
+                pass
             self.scans = 0
         return
 
