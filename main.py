@@ -1,17 +1,17 @@
-from QR import QR
-from CSVHandler import CSVHandler
+import tkinter as tk
+from Scan import Scan
 
-csvfile = open('data.csv', 'a')
+class Odin(tk.Tk):
+    def __init__(self, *args, **kwargs):
+        tk.Tk.__init__(self, *args, **kwargs)
+        self.scan = Scan("data.csv")
+        self.scan_button = tk.Button(text = "Scan Code", width = 50, height = 2, command=self.scan.scan)
+        self.scan_button.pack()
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
 
-qr_reader = QR()
-csv_writer = CSVHandler(csvfile)
+    def _on_close(self):
+        self.scan.cleanup()
+        self.destroy()
 
-while True:
-    data = qr_reader.decode(qr_reader.read_camera())
-    if(data):
-        csv_writer.write_to_csv(data)
-        break
-
-qr_reader.destroy_windows()
-qr_reader.release_camera()
-csvfile.close()
+odin = Odin()
+odin.mainloop()
