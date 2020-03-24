@@ -28,6 +28,9 @@ class QR:
         else:
             return None
 
+    def create_camera(self):
+        self.camera = cv2.VideoCapture(0)
+
     def destroy_windows(self):
         cv2.destroyAllWindows()
 
