@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from Scan import Scan
 from PIL import ImageTk, Image
+from TBA import TBA
 
 class Odin(tk.Tk):
     def __init__(self, *args, **kwargs):
@@ -29,4 +30,6 @@ class Odin(tk.Tk):
         self.destroy()
 
 odin = Odin()
+tba = TBA()
+tba.getstatus()
 odin.mainloop()
