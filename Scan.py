@@ -28,7 +28,6 @@ class Scan:
         self.scans += 1
         if self.scans == 10:
             shutil.copy(self.filename, f"{self.filename}_{int(time.time())}.csv")
-            pass
             self.scans = 0
         return
 
