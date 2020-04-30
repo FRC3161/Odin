@@ -3,13 +3,16 @@ from tkinter import ttk
 from Scan import Scan
 from PIL import ImageTk, Image
 from TBA import TBA
+from Verify import Verify
 
 class Odin(tk.Tk):
     def __init__(self, *args, **kwargs):
         tk.Tk.__init__(self, *args, **kwargs)
         self.geometry("600x400")
         self.title("Odin")
+
         self.scan = Scan("data.csv")
+        self.verify = Verify()
 
         self.columnconfigure(0, weight=1)
 
@@ -18,7 +21,10 @@ class Odin(tk.Tk):
         self.panel.grid(row=0, column=0)
 
         self.scan_button = ttk.Button(text="Scan Code", command=self.scan.scan)
-        self.scan_button.grid(row=1, column=0)
+        self.scan_button.grid(row=1, column=0, pady=10)
+
+        self.verify_button = ttk.Button(text="Verify Data", command=self.verify.verify)
+        self.verify_button.grid(row=2, column=0, pady=15)
 
         self.style = ttk.Style()
         self.style.theme_use("clam")
@@ -30,6 +36,6 @@ class Odin(tk.Tk):
         self.destroy()
 
 odin = Odin()
-tba = TBA()
+tba = TBA('2020onosh')
 tba.getstatus()
 odin.mainloop()
