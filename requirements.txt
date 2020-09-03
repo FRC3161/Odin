@@ -2,3 +2,4 @@ pyzbar
 opencv-python
 tbapy
 pillow
+kivy
