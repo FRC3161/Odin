@@ -1,14 +1,13 @@
 import os
 import yaml
+import datetime
 
 class DataHandler:
-    # TODO rename things for PEP compliance
+    def __init__(self, data_directory="data"):
+        self.data_directory = data_directory
 
-    def __init__(self, dataDirectory="data"):
-        self.dataDirectory = dataDirectory
-
-        if not os.path.exists(self.dataDirectory):
-            os.mkdir(self.dataDirectory)
+        if not os.path.exists(self.data_directory):
+            os.mkdir(self.data_directory)
 
     def readData(self, data: str):
         # TODO I'm assuming the data is in a certain order, is there a better way or do I just need to make this assumption?
@@ -19,7 +18,7 @@ class DataHandler:
         # are in random locations
         data_list = data.split(",")
         data_dict = {
-            "Team Name": data_list[0],
+            "Scouter Name": data_list[0],
             "Match Number": int(data_list[1]),
             "Match Type": data_list[2],
             "Team Number": int(data_list[3]),
@@ -48,4 +47,14 @@ class DataHandler:
         # TODO Refactor, this is going to be a real stinker
         # TODO Generate some test data to test this out
         data = yaml.load(yaml_data, Loader=yaml.FullLoader)
+        # splitting this to make it cleaner
+        # filename format: teamnumber_matchtype_matchnumber_scouter_date_time.yaml
+        # date/time are when the data is entered, so don't use it to determine a match number
+        filename = f"{data['Team Number']}_{data['Match Type']}_{data['Match Number']}_{data['Scouter Name']}_{datetime.datetime.date(datetime.datetime.now())}_{datetime.datetime.time(datetime.datetime.now())}.yaml"
+        f = open(f"{self.data_directory}/{filename}", "w")
+        f.write(yaml_data)
+        f.close()
+
+
+
         
