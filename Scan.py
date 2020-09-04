@@ -12,7 +12,7 @@ class Scan:
             data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
             if data:
                 # TODO Write to YAML
-                print(data)
+                return data
                 # I remember there being some reason why I didn't use a break here
                 # Either it didn't work or readability
                 scanned = True
