@@ -32,6 +32,7 @@ class MainScreen(RelativeLayout):
 
         self.cols = 1
         self.scan = scan
+        self.verify = verify
 
         super(MainScreen, self).__init__(**kwargs)
 
