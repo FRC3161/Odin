@@ -15,7 +15,7 @@ class Odin(App):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.scan = Scan("data.csv")
+        self.scan = Scan()
         self.verify = Verify()
 
     def build(self):
