@@ -2,7 +2,6 @@ import kivy
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.relativelayout import RelativeLayout
-from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from kivy.uix.button import Button
 
@@ -17,9 +16,10 @@ class Odin(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.scan = Scan("data.csv")
+        self.verify = Verify()
 
     def build(self):
-        return  MainScreen(self.scan)
+        return  MainScreen(self.scan, self.verify)
 
     def on_request_close(self, *args):
         self.scan.cleanup()
@@ -27,7 +27,7 @@ class Odin(App):
 
 class MainScreen(RelativeLayout):
 
-    def __init__(self, scan, **kwargs):
+    def __init__(self, scan, verify, **kwargs):
         Window.clearcolor = (1, 1, 1, 1)
 
         self.cols = 1
