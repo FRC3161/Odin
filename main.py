@@ -7,7 +7,6 @@ from kivy.uix.button import Button
 
 from Scan import Scan
 from TBA import TBA
-from Verify import Verify
 
 kivy.require('1.11.1')
 
@@ -16,10 +15,9 @@ class Odin(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.scan = Scan()
-        self.verify = Verify()
 
     def build(self):
-        return MainScreen(self.scan, self.verify)
+        return MainScreen(self.scan)
 
     def on_request_close(self, *args):
         self.scan.cleanup()
@@ -27,12 +25,11 @@ class Odin(App):
 
 class MainScreen(RelativeLayout):
 
-    def __init__(self, scan, verify, **kwargs):
+    def __init__(self, scan, **kwargs):
         Window.clearcolor = (1, 1, 1, 1)
 
         self.cols = 1
         self.scan = scan
-        self.verify = verify
 
         super(MainScreen, self).__init__(**kwargs)
 
