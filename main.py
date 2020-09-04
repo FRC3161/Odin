@@ -29,8 +29,10 @@ class MainScreen(RelativeLayout):
 
     def __init__(self, scan, **kwargs):
         Window.clearcolor = (1, 1, 1, 1)
+
         self.cols = 1
         self.scan = scan
+
         super(MainScreen, self).__init__(**kwargs)
 
         self.add_widget(Label(text="Odin", font_size='48', pos=(0, 200), color=[0, 0, 0, 1], font_name='Rajdhani-Bold.ttf'))
