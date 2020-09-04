@@ -1,41 +1,40 @@
-import tkinter as tk
-from tkinter import ttk
+import kivy
+from kivy.app import App
+from kivy.uix.label import Label
+from kivy.uix.relativelayout import RelativeLayout
+from kivy.uix.textinput import TextInput
+from kivy.core.window import Window
+from kivy.uix.button import Button
+
 from Scan import Scan
-from PIL import ImageTk, Image
 from TBA import TBA
 from Verify import Verify
 
-class Odin(tk.Tk):
-    def __init__(self, *args, **kwargs):
-        tk.Tk.__init__(self, *args, **kwargs)
-        self.geometry("600x400")
-        self.title("Odin")
+kivy.require('1.11.1')
 
+class Odin(App):
+
+    def build(self):
+        return  MainScreen()
+
+class MainScreen(RelativeLayout):
+
+    def __init__(self, **kwargs):
+        Window.clearcolor = (1, 1, 1, 1)
+        self.cols = 1
         self.scan = Scan("data.csv")
-        self.verify = Verify()
+        super(MainScreen, self).__init__(**kwargs)
 
-        self.columnconfigure(0, weight=1)
+        self.add_widget(Label(text="Odin", font_size='48', pos=(0, 200), color=[0, 0, 0, 1], font_name='Rajdhani-Bold.ttf'))
 
-        self.img = ImageTk.PhotoImage(Image.open("logo_image.png"))
-        self.panel = tk.Label(self, image=self.img)
-        self.panel.grid(row=0, column=0)
+        self.scan_button = Button(text="Scan", size=(120, 50), size_hint=(None, None), pos=(348, 350))
+        self.scan_button.bind(on_press=self.scan_onpress)
+        self.add_widget(self.scan_button)
 
-        self.scan_button = ttk.Button(text="Scan Code", command=self.scan.scan)
-        self.scan_button.grid(row=1, column=0, pady=10)
-
-        self.verify_button = ttk.Button(text="Verify Data", command=self.verify.verify)
-        self.verify_button.grid(row=2, column=0, pady=15)
-
-        self.style = ttk.Style()
-        self.style.theme_use("clam")
-
-        self.protocol("WM_DELETE_WINDOW", self._on_close)
-
-    def _on_close(self):
-        self.scan.cleanup()
-        self.destroy()
+    def scan_onpress(self, instance):
+        self.scan.scan()
 
 odin = Odin()
 tba = TBA('2020onosh')
-tba.getstatus()
-odin.mainloop()
+#tba.getstatus()
+Odin().run()
