@@ -1,4 +1,5 @@
 from QR import QR
+from pyzbar.pyzbar import ZBarSymbol
 
 class Scan:
     def __init__(self):
@@ -8,10 +9,13 @@ class Scan:
         self.qr_reader.create_camera()
         scanned = False
         while not scanned:
-            data = self.qr_reader.decode(self.qr_reader.read_camera())
+            data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
             if data:
                 # TODO Write to YAML
-                pass
+                print(data)
+                # I remember there being some reason why I didn't use a break here
+                # Either it didn't work or readability
+                scanned = True
 
         self.qr_reader.destroy_windows()
         self.qr_reader.release_camera()

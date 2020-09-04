@@ -21,8 +21,8 @@ class QR:
 
         return self.grayscale
 
-    def decode(self, data):
-        self.decodedData = pyzbar.decode(data)
+    def decode(self, data, symbol_type):
+        self.decodedData = pyzbar.decode(data, symbols=symbol_type)
         if(self.decodedData):
             return self.decodedData[0].data.decode('utf-8').split(", ")
         else:
