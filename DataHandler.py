@@ -4,8 +4,10 @@ import yaml
 class DataHandler:
 
     def __init__(self, dataDirectory="data"):
-        if not os.path.exists(dataDirectory):
-            os.mkdir(dataDirectory)
+        self.dataDirectory = dataDirectory
+
+        if not os.path.exists(self.dataDirectory):
+            os.mkdir(self.dataDirectory)
 
     def readData(self, data: str):
         # TODO I'm assuming the data is in a certain order, is there a better way or do I just need to make this assumption?
