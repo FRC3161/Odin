@@ -2,6 +2,7 @@ import os
 import yaml
 
 class DataHandler:
+    # TODO rename things for PEP compliance
 
     def __init__(self, dataDirectory="data"):
         self.dataDirectory = dataDirectory
