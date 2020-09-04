@@ -14,15 +14,23 @@ kivy.require('1.11.1')
 
 class Odin(App):
 
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+        self.scan = Scan("data.csv")
+
     def build(self):
-        return  MainScreen()
+        return  MainScreen(self.scan)
+
+    def on_request_close(self, *args):
+        self.scan.cleanup()
+        return True
 
 class MainScreen(RelativeLayout):
 
-    def __init__(self, **kwargs):
+    def __init__(self, scan, **kwargs):
         Window.clearcolor = (1, 1, 1, 1)
         self.cols = 1
-        self.scan = Scan("data.csv")
+        self.scan = scan
         super(MainScreen, self).__init__(**kwargs)
 
         self.add_widget(Label(text="Odin", font_size='48', pos=(0, 200), color=[0, 0, 0, 1], font_name='Rajdhani-Bold.ttf'))
@@ -34,7 +42,5 @@ class MainScreen(RelativeLayout):
     def scan_onpress(self, instance):
         self.scan.scan()
 
-odin = Odin()
 tba = TBA('2020onosh')
-#tba.getstatus()
 Odin().run()
