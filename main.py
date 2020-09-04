@@ -19,7 +19,7 @@ class Odin(App):
         self.verify = Verify()
 
     def build(self):
-        return  MainScreen(self.scan, self.verify)
+        return MainScreen(self.scan, self.verify)
 
     def on_request_close(self, *args):
         self.scan.cleanup()
