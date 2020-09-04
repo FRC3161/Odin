@@ -43,6 +43,9 @@ class DataHandler:
 
         return yaml.dump(data_dict)
 
-    def writeData(self, data):
-        # Writes the YAML to a file
-        pass
+    # TODO Figure out YAML type hinting
+    def writeData(self, yaml_data):
+        # TODO Refactor, this is going to be a real stinker
+        # TODO Generate some test data to test this out
+        data = yaml.load(yaml_data, Loader=yaml.FullLoader)
+        
