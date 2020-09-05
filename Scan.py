@@ -14,6 +14,7 @@ class Scan:
             data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
             if data:
                 # TODO Refactor, design is iffy
+                print(data)
                 yaml_data = self.data_handler.readData(data)
                 self.data_handler.writeData(yaml_data)
                 # I remember there being some reason why I didn't use a break here
