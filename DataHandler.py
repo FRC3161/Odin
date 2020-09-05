@@ -15,8 +15,8 @@ class DataHandler:
         # TODO Bruh moment, refactor this please
         # TODO Check data most likely in (an)other function(s)
         # TODO Possibly look into re-ordering data into a more logical fashion, right now important field (ie. team number)
-        # TODO HARDCODING LMAOOOOO HAHAHAHAH
         # are in random locations
+        # TODO HARDCODING LMAOOOOO HAHAHAHAH
         data_dict = {
             "Scouter Name": data[0],
             "Match Number": int(data[1]),
