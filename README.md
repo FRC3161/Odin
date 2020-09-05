@@ -1,0 +1,24 @@
+# Odin
+
+#### 3161's scouting app "server" for collating data collected by Muninn
+
+
+## Installation / Setup
+
+### Create A Virtual Environment
+
+Make sure you use python 3.7, as OpenCV does not support 3.8 yet
+`python -m venv <virtualenv name>`
+
+### Install the Dependencies
+
+On Windows:
+`pip install -r requirements_windows.txt`
+
+Otherwise:
+`pip install -r requirements.txt`
+
+Coming Soon: a script that installs the correct dependencies based on the platform you're using
+
+### Run the script
+python main.py
