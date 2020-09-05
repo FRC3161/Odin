@@ -14,7 +14,7 @@ class Scan:
         self.qr_reader.create_camera()
         scanned = False
         while not scanned:
-            if not sys.argv[1] == "1":
+            if not sys.argv[1] == "image":
                 data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
             else:
                 data = self.qr_reader.decode(Image.open(f'{sys.argv[2]}'), symbol_type=[ZBarSymbol.QRCODE])
