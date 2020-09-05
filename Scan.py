@@ -1,6 +1,9 @@
 from QR import QR
 from pyzbar.pyzbar import ZBarSymbol
 from DataHandler import DataHandler
+from PIL import Image
+
+import sys
 
 class Scan:
     def __init__(self):
@@ -11,7 +14,10 @@ class Scan:
         self.qr_reader.create_camera()
         scanned = False
         while not scanned:
-            data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
+            if not sys.argv[1] == "1":
+                data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
+            else:
+                data = self.qr_reader.decode(Image.open('sample_data.png'), symbol_type=[ZBarSymbol.QRCODE])
             if data:
                 # TODO Refactor, design is iffy
                 print(data)
