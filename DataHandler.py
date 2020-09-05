@@ -31,9 +31,9 @@ class DataHandler:
             "Low Port Teleop": int(data[10]),
             "Missed Teleop": int(data[11]),
             "Robot Attitude": data[12],
-            "Colour Wheel Done": data[13],
-            "Colour Wheel Landed": data[14],
-            "Colour Wheel Was Rotated": data[15],
+            "Colour Wheel Done": bool(data[13]),
+            "Colour Wheel Landed": bool(data[14]),
+            "Colour Wheel Was Rotated": bool(data[15]),
             "Climb": data[16], # TODO possibly a boolean, look into this
             "Balanced": data[17],
             "Number of Climbs": int(data[18]),
