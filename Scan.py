@@ -17,7 +17,7 @@ class Scan:
             if not sys.argv[1] == "1":
                 data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
             else:
-                data = self.qr_reader.decode(Image.open('sample_data.png'), symbol_type=[ZBarSymbol.QRCODE])
+                data = self.qr_reader.decode(Image.open(f'{sys.argv[2]}'), symbol_type=[ZBarSymbol.QRCODE])
             if data:
                 # TODO Refactor, design is iffy
                 yaml_data = self.data_handler.readData(data)
