@@ -5,6 +5,8 @@ from kivy.uix.relativelayout import RelativeLayout
 from kivy.core.window import Window
 from kivy.uix.button import Button
 
+import argparse
+
 from Scan import Scan
 from TBA import TBA
 
@@ -15,6 +17,9 @@ class Odin(App):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         self.scan = Scan()
+        # TODO look into doing arg handling in a more elegant way (less passing stuff through)
+        self.parser = argparse.ArgumentParser()
+        self.parser.add_argument("-i", "--image", action='store_true', help="Scans from an image named sample_data.png in the same directory as the script (for testing purposes)")
 
     def build(self):
         return MainScreen(self.scan)
