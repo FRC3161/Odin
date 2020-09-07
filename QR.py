@@ -23,7 +23,7 @@ class QR:
 
     def decode(self, data, symbol_type):
         self.decodedData = pyzbar.decode(data, symbols=symbol_type)
-        if(self.decodedData):
+        if self.decodedData:
             return self.decodedData[0].data.decode('utf-8').split(", ")
         else:
             return None
