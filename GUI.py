@@ -11,15 +11,10 @@ kivy.require('1.11.1')
 
 class Odin(App):
 
-    def __init__(self, **kwargs):
+    def __init__(self, parser, **kwargs):
         super().__init__(**kwargs)
 
-        # TODO look into doing arg handling in a more elegant way (less passing stuff through)
-        #self.parser = argparse.ArgumentParser()
-        # TODO handle filenames, for now this is good enough since I'm just using it to test
-        #self.parser.add_argument("-i", "--image", action='store_true', help="Scans from an image named sample_data.png in the same directory as the script (for testing purposes)")
-
-        self.scan = Scan()
+        self.scan = Scan(parser)
 
     def build(self):
         return MainScreen(self.scan)
