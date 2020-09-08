@@ -24,7 +24,7 @@ Otherwise:
 Coming Soon: a script that installs the correct dependencies based on the platform you're using
 
 ## Usage 
-To run the script, switch to the virutal environment you created and run `python main.py`
+To run the script, switch to the virtual environment you created and run `python main.py`
 
 ### Arguments
 Currently, the only argument supported is `--image`, to scan a code from an image. It's usage is as follows:
