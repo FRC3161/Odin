@@ -20,5 +20,13 @@ Otherwise:
 
 Coming Soon: a script that installs the correct dependencies based on the platform you're using
 
-### Run the script
-python main.py
+## Usage 
+To run the script, switch to the virutal environment you created and run `python main.py`
+
+### Arguments
+Currently, the only argument supported is `--image`, to scan a code from an image. It's usage is as follows:
+```
+python main.py -- --image <image_name>
+```
+
+The `--` at the beginning is important because Kivy will intercept the args otherwise
