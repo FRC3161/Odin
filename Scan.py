@@ -1,37 +1,35 @@
 from QR import QR
-from CSVHandler import CSVHandler
-import shutil
-import time
+from pyzbar.pyzbar import ZBarSymbol
+from DataHandler import DataHandler
+from PIL import Image
+
+import sys
 
 class Scan:
-    def __init__(self, dataFileName):
-        self.filename = dataFileName
-        self.csvfile = open(dataFileName, 'a')
+    def __init__(self):
         self.qr_reader = QR()
-        self.csv_writer = CSVHandler(self.csvfile)
-        # Backing up file every 10 scans
-        self.scans = 0
+        self.data_handler = DataHandler()
 
     def scan(self):
         self.qr_reader.create_camera()
         scanned = False
         while not scanned:
-            data = self.qr_reader.decode(self.qr_reader.read_camera())
+            if not sys.argv[1] == "image":
+                data = self.qr_reader.decode(self.qr_reader.read_camera(), symbol_type=[ZBarSymbol.QRCODE])
+            else:
+                data = self.qr_reader.decode(Image.open(f'{sys.argv[2]}'), symbol_type=[ZBarSymbol.QRCODE])
             if data:
-                self.csv_writer.write_to_csv(data)
-                self.csvfile.flush()
+                # TODO Refactor, design is iffy
+                yaml_data = self.data_handler.readData(data)
+                self.data_handler.writeData(yaml_data)
+                # I remember there being some reason why I didn't use a break here
+                # Either it didn't work or readability
                 scanned = True
 
         self.qr_reader.destroy_windows()
         self.qr_reader.release_camera()
-
-        self.scans += 1
-        if self.scans == 10:
-            shutil.copy(self.filename, f"{self.filename}_{int(time.time())}.csv")
-            self.scans = 0
         return
 
     def cleanup(self):
         self.qr_reader.destroy_windows()
         self.qr_reader.release_camera()
-        self.csvfile.close()

@@ -7,7 +7,6 @@ from kivy.uix.button import Button
 
 from Scan import Scan
 from TBA import TBA
-from Verify import Verify
 
 kivy.require('1.11.1')
 
@@ -15,11 +14,16 @@ class Odin(App):
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.scan = Scan("data.csv")
-        self.verify = Verify()
+
+        # TODO look into doing arg handling in a more elegant way (less passing stuff through)
+        #self.parser = argparse.ArgumentParser()
+        # TODO handle filenames, for now this is good enough since I'm just using it to test
+        #self.parser.add_argument("-i", "--image", action='store_true', help="Scans from an image named sample_data.png in the same directory as the script (for testing purposes)")
+
+        self.scan = Scan()
 
     def build(self):
-        return MainScreen(self.scan, self.verify)
+        return MainScreen(self.scan)
 
     def on_request_close(self, *args):
         self.scan.cleanup()
@@ -27,12 +31,11 @@ class Odin(App):
 
 class MainScreen(RelativeLayout):
 
-    def __init__(self, scan, verify, **kwargs):
+    def __init__(self, scan, **kwargs):
         Window.clearcolor = (1, 1, 1, 1)
 
         self.cols = 1
         self.scan = scan
-        self.verify = verify
 
         super(MainScreen, self).__init__(**kwargs)
 
