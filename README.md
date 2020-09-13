@@ -8,17 +8,28 @@
 ### Create A Virtual Environment
 
 Make sure you use python 3.7, as OpenCV does not support 3.8 yet
+
 `python -m venv <virtualenv name>`
 
 ### Install the Dependencies
 
 On Windows:
+
 `pip install -r requirements_windows.txt`
 
 Otherwise:
+
 `pip install -r requirements.txt`
 
 Coming Soon: a script that installs the correct dependencies based on the platform you're using
 
-### Run the script
-python main.py
+## Usage 
+To run the script, switch to the virtual environment you created and run `python main.py`
+
+### Arguments
+Currently, the only argument supported is `--image`, to scan a code from an image. It's usage is as follows:
+```
+python main.py -- --image <image_name>
+```
+
+The `--` at the beginning is important because Kivy will intercept the args otherwise
