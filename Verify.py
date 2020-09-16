@@ -2,5 +2,5 @@ class Verify:
     def __init__(self):
         pass
 
-    def verify(self):
+    def verify_offline(self):
         pass
