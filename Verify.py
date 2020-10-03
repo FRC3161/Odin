@@ -18,6 +18,14 @@ class Verify:
             return False
         return True
 
+    # pretty much just copypaste but it's for readability
+    def match_isnumeric(self, match):
+        try:
+            int(match)
+        except ValueError:
+            return False
+        return True
+
     def check_match_bounds(self, matchno):
         if (Constants.MATCH_MIN > matchno) or (Constants.MATCH_MAX < matchno):
             return False
