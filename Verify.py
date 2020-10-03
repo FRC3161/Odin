@@ -13,7 +13,7 @@ class Verify:
         return True
 
     def check_score_bounds(self, score):
-        if (Constants.SCORE_MIN < score) or (Constants.SCORE_MAX < score):
+        if (Constants.SCORE_MIN > score) or (Constants.SCORE_MAX < score):
             return False
         return True
 
