@@ -18,5 +18,10 @@ class Verify:
             return False
         return True
 
+    def check_match_bounds(self, matchno):
+        if (Constants.MATCH_MIN > matchno) or (Constants.MATCH_MAX < matchno):
+            return False
+        return True
+
     def verify_offline(self):
         pass
