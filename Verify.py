@@ -5,7 +5,8 @@ class Verify:
         pass
 
     #TODO give better name
-    def check_if_score_is_numeric(self, score):
+    def score_isnumeric(self, score):
+        # Could use isnumeric() here, but it will throw an error if score is an integer
         try:
             int(score)
         except ValueError:
