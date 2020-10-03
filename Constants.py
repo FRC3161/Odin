@@ -1,0 +1,2 @@
+SCORE_MIN = 0
+SCORE_MAX = 250
