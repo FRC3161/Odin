@@ -4,8 +4,6 @@ from DataHandler import DataHandler
 from PIL import Image
 from Verify import Verify
 
-import sys
-
 class Scan:
     def __init__(self, parser):
         self.qr_reader = QR()
