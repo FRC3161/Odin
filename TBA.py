@@ -22,6 +22,13 @@ class TBA:
                 return True
         return False
 
+    def verify_score(self, match_number, match_type, alliance, score):
+        # Verifies the score of a given alliance in a match
+        match_data = self.tba.match(key=f"{self.event}_{match_type}m{match_number}")
+        if match_data.alliances[alliance]['score'] == score:
+            return True
+        return False
+
 
     def get_match_score(self, match_number, match_type, alliance):
         match_data = self.tba.match(key=f"{self.event}_{match_type}m{match_number}")

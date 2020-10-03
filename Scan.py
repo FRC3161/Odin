@@ -2,8 +2,7 @@ from QR import QR
 from pyzbar.pyzbar import ZBarSymbol
 from DataHandler import DataHandler
 from PIL import Image
-
-import sys
+from Verify import Verify
 
 class Scan:
     def __init__(self, parser):
@@ -11,6 +10,7 @@ class Scan:
         self.data_handler = DataHandler()
         self.parser = parser
         self.args = self.parser.parse_args()
+        self.verify = None
 
     def scan(self):
         self.qr_reader.create_camera()
@@ -24,7 +24,10 @@ class Scan:
             if data:
                 # TODO Refactor, design is iffy
                 yaml_data = self.data_handler.readData(data)
-                self.data_handler.writeData(yaml_data)
+                # TODO add match score to the scouting app lol
+                self.verify = Verify(yaml_data['_score'], yaml_data['Match Number'])
+                if self.verify.verify_offline():
+                    self.data_handler.writeData(yaml_data)
                 # I remember there being some reason why I didn't use a break here
                 # Either it didn't work or readability
                 scanned = True
