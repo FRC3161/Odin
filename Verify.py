@@ -19,7 +19,7 @@ class Verify:
         return True
 
     # pretty much just copypaste but it's for readability
-    def match_isnumeric(self, match):
+    def match_isnumeric(self, matchno):
         try:
             int(match)
         except ValueError:
@@ -31,5 +31,7 @@ class Verify:
             return False
         return True
 
-    def verify_offline(self):
-        pass
+    def verify_offline(self, score, matchno):
+        if self.score_isnumeric(score) and self.check_score_bounds(score) and self.match_isnumeric(matchno) and self.check_match_bounds(matchno):
+            return True
+        return False
