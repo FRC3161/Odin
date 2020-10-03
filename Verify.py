@@ -1,3 +1,5 @@
+import Constants
+
 class Verify:
     def __init__(self):
         pass
@@ -7,6 +9,11 @@ class Verify:
         try:
             int(score)
         except ValueError:
+            return False
+        return True
+
+    def check_score_bounds(self, score):
+        if (Constants.SCORE_MIN < score) or (Constants.SCORE_MAX < score):
             return False
         return True
 
